@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pwstrength-bootstrap/3.0.9/pwstrength-bootstrap.min.js"
+            integrity="sha512-HvxKicgd5m5yRIotHDzL9iFZ2PK/KzyrPqLDYPboT7WQrq3q3NuG+1eWeCZgPru4Pc7fhyPF+71qRQr7mUNWCg=="
+            crossorigin="anonymous"></script>
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab"
+                       aria-controls="login" aria-selected="true">Iniciar sesi&oacute;n</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="signup-tab" data-bs-toggle="tab" href="#signup" role="tab"
+                       aria-controls="signup" aria-selected="false">Registro</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                    <form id="loginForm" name="login">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" placeholder="email" id="login_email"
+                                   name="login_email" required>
+                            <label for="login_email">Correo electr&oacute;nico</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="password" id="login_password"
+                                   name="login_password" required>
+                            <label for="login_password">Contrase&ntilde;a</label>
+                            <div id="login_passErrors"></div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-md-2">Enviar</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                    <h5 class="card-title">Proporcione la siguiente informaci&oacute;n</h5>
+                    <form id="signupForm" name="signup" novalidate>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" placeholder="name" id="signup_firstName" name="signup_firstName"
+                                   required>
+                            <label for="signup_firstName">Nombre(s)</label>
+                            <div class="invalid-feedback" id="signup_firstNameErrors"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" placeholder="lastname" id="signup_lastName"
+                                   name="signup_lastName" required>
+                            <label for="signup_lastName">Apellidos</label>
+                            <div class="invalid-feedback" id="signup_lastNameErrors"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" placeholder="email" id="signup_email"
+                                   name="signup_email" required>
+                            <label for="signup_email">Correo electr&oacute;nico</label>
+                            <div class="invalid-feedback" id="signup_emailErrors">Correo no v&aacute;lido</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="password" id="signup_password"
+                                   name="signup_password" required>
+                            <label for="signup_password">Contrase&ntilde;a</label>
+                            <div class="invalid-feedback" id="signup_passwordErrors"></div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="passwordConfirm"
+                                   id="signup_passwordConfirm" name="signup_passwordConfirm" required>
+                            <label for="signup_passwordConfirm">Confirme la contrase&ntilde;a</label>
+                            <div class="invalid-feedback" id="signup_passwordConfirmErrors"></div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-md-2">Enviar</button>
+                            <a role="button" class="btn btn-outline-secondary" href="/login">Regresar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="JavaScript">
+$(() => {
+    options = {
+        common: {minChar:8},
+        ui: {
+            showPopover:true,
+            popoverPlacement: 'right',
+            showErrors:true
+            }
+    };
+    $('#signup_passwordConfirm').pwstrength(options);
+
+    $('#signupForm').on('submit', (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        var formData = {};
+        $('#signupForm input').serializeArray().forEach(element => formData[element.name] = element.value);
+
+        validateFormData(formData);
+
+
+        $('#signupForm').addClass('was-validated');
+    });
+
+    const validateFormData = formData => {
+        console.log(Object.keys);
+        Object.keys(formData).forEach(field => {
+            if ($(`#${field}`).val().trim() === '') {
+                $(`#${field}Errors`).html('Campo requerido');
+            }
+        });
+        console.log(formData);
+
+    };
+})
+
+</script>
+</body>
+</html>
