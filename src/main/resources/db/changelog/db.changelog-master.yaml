@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202101211500-1
+      author: kuroiryuu@gmail.com
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: residentPK
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: apartment
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+            tableName: resident
+  - changeSet:
+      id: 202101211500-2
+      author: kuroiryuu@gmail.com
+      changes:
+        - addUniqueConstraint:
+            columnNames: email
+            constraintName: UC_RESIDENTEMAIL_COL
+            tableName: resident
+

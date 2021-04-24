@@ -1,23 +1,29 @@
 package com.kuroiryuu.mayas.api.controller;
 
 import com.kuroiryuu.mayas.dto.ResidentDto;
-import com.kuroiryuu.mayas.model.Resident;
 import com.kuroiryuu.mayas.service.ResidentService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@RestController("/resident")
+@RestController
+@RequestMapping("/api/residents")
 public class ResidentControllerImpl implements ResidentController {
-    @Autowired
-    private ResidentService residentService;
+    private final ResidentService residentService;
+    private final ModelMapper modelMapper;
 
-    @Override
-    public ResponseEntity<Resident> registerUserAccount(ResidentDto residentDto, HttpServletRequest request, Errors errors) {
-        return ResponseEntity.ok(residentService.create(residentDto));
+    public ResidentControllerImpl(ResidentService residentService, ModelMapper modelMapper) {
+        this.residentService = residentService;
+        this.modelMapper = modelMapper;
+    }
+
+    public ResponseEntity<List<ResidentDto>> getResidents() {
+        return ResponseEntity.ok(residentService.findAll().stream()
+                .map(resident -> modelMapper.map(resident, ResidentDto.class))
+                .collect(Collectors.toUnmodifiableList()));
     }
 }

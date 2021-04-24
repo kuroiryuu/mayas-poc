@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/login.css">
+  <title>Iniciar sesi&oacute;n</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-4">Reg&iacute;strate</h3>
+              <p class="text-muted mb-4">Proporciona tus datos para crear tu usuario</p>
+              <form>
+                <div class="form-group mb-3">
+                  <label for="firstName" class="sr-only">Nombre(s)</label>
+                  <input id="firstName" placeholder="Nombre(s)" required="" autofocus=""
+                         class="form-control rounded-pill border-0 shadow-sm px-4">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="lastName" class="sr-only">Apellidos</label>
+                  <input id="lastName" placeholder="Apellidos" required=""
+                         class="form-control rounded-pill border-0 shadow-sm px-4">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="email" class="sr-only">Correo electr&oacute;nico</label>
+                  <input id="email" type="email" placeholder="Correo electr&oacute;nico" required=""
+                         class="form-control rounded-pill border-0 shadow-sm px-4">
+                  <small class="form-text text-muted">Te enviaremos un correo para confirmar tu cuenta. Este correo será
+                    tu usuario para iniciar sesi&oacute;n.</small>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="password" class="sr-only">Contrase&ntilde;a</label>
+                  <input id="password" type="password" placeholder="Contrase&ntilde;a" required=""
+                         class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="passwordConfirm" class="sr-only">Confirma tu contrase&ntilde;a</label>
+                  <input id="passwordConfirm" type="password" placeholder="Confirma tu contrase&ntilde;a" required=""
+                         class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="apartment" class="sr-only">Departamento</label>
+                  <select id="apartment"
+                          class="form-control custom-select rounded-pill border-0 shadow-sm px-4 text-primary" required>
+                    <option disabled selected>Departamento</option>
+                    <option>101</option>
+                    <option>102</option>
+                    <option>103</option>
+                    <option>104</option>
+                    <option>105</option>
+                    <option>106</option>
+                    <option>107</option>
+                    <option>108</option>
+                    <option>201</option>
+                    <option>202</option>
+                    <option>203</option>
+                    <option>204</option>
+                    <option>205</option>
+                    <option>206</option>
+                    <option>207</option>
+                    <option>208</option>
+                    <option>301</option>
+                    <option>302</option>
+                    <option>303</option>
+                    <option>304</option>
+                    <option>305</option>
+                    <option>306</option>
+                    <option>307</option>
+                    <option>308</option>
+                    <option>401</option>
+                    <option>402</option>
+                    <option>403</option>
+                    <option>404</option>
+                    <option>405</option>
+                    <option>406</option>
+                    <option>407</option>
+                    <option>408</option>
+                    <option>501</option>
+                    <option>502</option>
+                    <option>503</option>
+                    <option>504</option>
+                    <option>505</option>
+                    <option>506</option>
+                    <option>507</option>
+                    <option>508</option>
+                  </select>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="phone" class="sr-only">Tel&eacute;fono (opcional)</label>
+                  <input type="tel" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
+                         id="phone" placeholder="Tel&eacute;fono (opcional)" pattern="[1-9][0-9]{9}">
+                  <small class="form-text text-muted">En caso de alguna emergencia o situaci&oacute;n
+                    relacionada con tu departamento
+                  </small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">
+                  Continuar
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

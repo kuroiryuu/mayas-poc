@@ -1,24 +1,25 @@
 package com.kuroiryuu.mayas.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    private ResidentService residentService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final ResidentService residentService;
+
+    public CustomUserDetailsService(ResidentService residentService) {
+        this.residentService = residentService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) {
-        return new User(email, passwordEncoder.encode("aaa"), List.of());
+        return residentService.findByEmail(email)
+                .map(resident -> new User(resident.getEmail(), resident.getPassword(), List.of()))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

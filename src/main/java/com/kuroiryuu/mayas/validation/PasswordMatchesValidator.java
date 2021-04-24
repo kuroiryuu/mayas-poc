@@ -1,18 +1,16 @@
 package com.kuroiryuu.mayas.validation;
 
-import com.kuroiryuu.mayas.dto.ResidentDto;
+import com.kuroiryuu.mayas.dto.SignupRequest;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.Objects;
 
-public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, ResidentDto> {
-    @Override
-    public void initialize(PasswordMatches constraintAnnotation) {
-        // No initialization required
-    }
+public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 
     @Override
-    public boolean isValid(ResidentDto user, ConstraintValidatorContext context) {
-        return user.getPassword().equals(user.getMatchingPassword());
+    public boolean isValid(Object obj, ConstraintValidatorContext context) {
+        SignupRequest signupRequest = (SignupRequest) obj;
+        return Objects.equals(signupRequest.getPassword(), signupRequest.getMatchingPassword());
     }
 }
